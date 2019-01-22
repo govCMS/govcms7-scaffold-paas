@@ -1,0 +1,6 @@
+FROM govcmslagoon/govcms7
+
+COPY . /app
+
+# Define where the Drupal Root is located
+ENV WEBROOT=docroot

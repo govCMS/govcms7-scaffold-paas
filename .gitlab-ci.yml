@@ -1,0 +1,1 @@
+include: 'https://projects.govcms.gov.au/govcms/govcms7-scaffold-ci/raw/master/.gitlab-ci.yml'
