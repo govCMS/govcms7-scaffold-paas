@@ -1,5 +1,6 @@
 FROM govcmslagoon/govcms7
 
+RUN rm -rf /app
 COPY . /app
 
 # Define where the Drupal Root is located
