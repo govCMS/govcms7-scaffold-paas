@@ -69,3 +69,11 @@ The GovCMS projects have been designed to be able to import a nightly copy of th
 * Tests specific to your site can be committed to the `/tests` folders
 * Do not make changes to `docker-compose.yml`, `lagoon.yml`, `.gitlab-ci.yml` or the Dockerfiles under `/.docker` - these will result in your project being unable to deploy to GovCMS PaaS
 
+## Stage File Proxy
+
+Stage File Proxy is already configured for use in both local development and cloud development environments. To enable:
+  - Add the `stage_file_proxy` module to your codebase
+  - Uncomment the relevant lines in `.docker/scripts/govcms-deploy`
+
+This will ensure SFP is enabled on non-prod environments in Lagoon.
+
