@@ -2,6 +2,7 @@ FROM govcmslagoon/govcms7
 
 RUN rm -rf /app
 COPY . /app
+COPY .docker/scripts/govcms-deploy /usr/bin/
 
 # Define where the Drupal Root is located
 ENV WEBROOT=docroot
