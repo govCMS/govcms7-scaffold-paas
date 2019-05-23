@@ -29,7 +29,7 @@ else
 
   if tables=$(drush sqlq 'show tables;') && [ -n "$tables" ]; then
 
-    mkdir -p /app/docroot/sites/default/files/private/backups/ && drush sql-dump --ordered-dump --gzip --result-file=/app/sites/default/files/private/backups/pre-deploy-dump.sql
+    mkdir -p /app/docroot/sites/default/files/private/backups/ && drush sql-dump --ordered-dump --gzip --result-file=/app/docroot/sites/default/files/private/backups/pre-deploy-dump.sql
   else
     echo "Drupal not installed."
   fi
