@@ -20,6 +20,7 @@ if [[ "$LAGOON_ENVIRONMENT_TYPE" != "production" ]]; then
         fi
 
     else
+      echo "Enable SFP here"
       # Enable stage file proxy.
       #drush en stage_file_proxy -y
     fi
