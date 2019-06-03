@@ -101,7 +101,11 @@ services:
       << : *default-environment
 
   solr:
-    image: govcmslagoon/solr
+    build:
+      context: .
+      dockerfile: .docker/Dockerfile.solr
+      args:
+        CLI_IMAGE: *lagoon-project
     labels:
       lagoon.type: solr
     ports:
