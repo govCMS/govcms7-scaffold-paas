@@ -1,1 +1,36 @@
-include: 'https://projects.govcms.gov.au/govcms/govcms7-scaffold-ci/raw/master/.gitlab-ci.yml'
+image: govcmsdev/gitlab-ci
+services:
+- docker:dind
+stages:
+- build
+- deploy
+build:
+  stage: build
+  script:
+  - export DOCKER_HOST=tcp://localhost:2375
+  - docker network prune -f && docker network create amazeeio-network
+  - docker login -u gitlab-ci-token -p $CI_JOB_TOKEN gitlab-registry-production.govcms.amazee.io
+  - ahoy up
+  - docker-compose exec -T test dockerize -wait tcp://mariadb:3306 -timeout 1m
+  - |
+    if grep --quiet '^MARIADB_DATA_IMAGE' .env; then
+      ahoy govcms-deploy
+    else
+      ahoy -v install -- install_configure_form.update_status_module='array(FALSE,FALSE)'
+    fi
+  - ahoy lint || true
+  - ahoy test-phpunit
+  - ahoy test-behat
+  - ahoy audit-site
+  artifacts:
+    paths:
+    - tests/behat/features/screenshots
+    expire_in: 7 days
+  except:
+    variables:
+      - $CI_COMMIT_MESSAGE =~ /GovCMS-Migration/
+deploy:
+  stage: deploy
+  script:
+  - echo "curl -X POST -d projectName=$CI_PROJECT_NAME -d branchName=$CI_COMMIT_REF_NAME http://rest2tasks.lagoon.svc:3000/deploy"
+  - curl -X POST -d projectName=$CI_PROJECT_NAME -d branchName=$CI_COMMIT_REF_NAME http://rest2tasks.lagoon.svc:3000/deploy
