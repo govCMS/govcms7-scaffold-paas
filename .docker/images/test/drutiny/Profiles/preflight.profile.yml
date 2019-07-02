@@ -1,0 +1,95 @@
+title: 'Local Site Audit'
+format:
+  html:
+    template: govcms-page
+policies:
+    Drupal-7:NoPageCompression:
+    Drupal:LintTheme:
+    Drupal:ThemeSecurity:
+    Drupal-7:ZenRegistryRebuild:
+    Drupal-7:XMLSitemapBaseURL:
+      parameters:
+        value : '^https://(www|ministerial|agency|blog|docs|annualreport|innovation|soe|news)\.[-a-z]{1,63}(\.[-a-z]{1,63})?\.gov\.au$'
+    Drupal-7:ViewsSqlSignature:
+    Drupal-7:ViewsPagination:
+    Drupal-7:ViewsCache:
+        severity: low
+    Drupal-7:UserRegistrationDisabled:
+    Drupal-7:User1LockDown:
+      severity: high
+      parameters:
+        blacklist : '(admin|root|drupal|god|govcms|paul|sean|ruwan)'
+        email : 'no_reply@govcms.gov.au'
+        status: 1
+    Drupal-7:UpdateModuleDisabled:
+      severity: normal
+    Drupal-7:StatisticsModuleDisabled:
+      severity: high
+    Drupal-7:SimpletestModuleDisabled:
+      severity: high
+    Drupal-7:SecurePagesConfig:NoDowngrade:
+    Drupal-7:SecurePagesConfig:Enabled:
+    Drupal-7:SecurePagesEnabled:
+    Drupal-7:Search404ModuleDisabled:
+    Drupal-7:PSA-2016-003:
+    Drupal-7:PhpModuleDisabled:
+    Drupal-7:JsAggregation:
+    Drupal-7:CSSAggregation:
+    Drupal-7:PoorMansCronDisabled:
+    Drupal-7:BlackListPermissions:
+      parameters:
+        permissions:
+          - 'add JS snippets for google analytics'
+          - 'administer features'
+          - 'administer govcms_dlm'
+          - 'administer module permissions'
+          - 'administer modules'
+          - 'administer password policies'
+          - 'administer permissions'
+          - 'administer seckit'
+          - 'administer site configuration'
+          - 'administer software updates'
+          - 'assign all roles'
+          - 'generate features'
+          - 'manage features'
+          - 'rename features'
+    Drupal-7:OverlayModuleDisabled:
+    Drupal-7:NoDuplicateModules:
+    Drupal-7:NoAdmins:
+    Drupal-7:MissingModules:
+    Drupal-7:ImageDerivatives:
+    Drupal-7:ErrorLevel:
+    Drupal-7:DblogModuleDisabled:
+    Drupal-7:CacheLifetime:
+    Drupal-7:PageCacheMaximumAge:
+    Drupal-7:InstallTaskCompleted:
+    Drupal-7:entityreference:
+    Distro:RobotstxtEnabled:
+    Distro:PasswordPolicyEnabled:
+    Distro:GoogleAnalyticsEnabled:
+    govcms-D7:GoogleAnalyticsAccount:
+    govcms-D7:PageviewsTracker:
+    govcms-D7:GoogleAnalyticsCache:
+    govcms-D7:DefaultDateTimezone:
+    govcms-D7:CKAN:
+    Drupal:SyslogEnabled:
+    fs:SensitivePublicFiles:
+    fs:DrupalThemeDirectory:
+    fs:largeFiles:
+      parameters:
+        max_size: 20
+    Drupal:updates:
+    Database:Size:
+      parameters:
+        max_size : 1000
+        warning_size : 250
+    Drupal:AnonSession:
+    Drupal-7:NoPageCompression:
+    govcms-D7:Services:
+    govcms-D7:ClamAV:
+    govcms-D7:AccountSecurity:
+    govcms-D7:PasswordPolicy:
+    govcms-D7:MaliciousWebformUpload:
+    govcms-D7:Seckit:
+    govcms-D7:Shield:
+    govcms-D7:RobotsTxt:

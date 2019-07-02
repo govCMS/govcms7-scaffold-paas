@@ -1,0 +1,105 @@
+title: 'Drupal 8 Full Audit'
+format:
+  html:
+    template: govcms-page
+policies:
+  # Modules
+  Drupal:SyslogEnabled:
+    severity: normal
+  Drupal-8:DblogDisabled:
+    severity: normal
+  Drupal-8:PhpDisabled:
+    severity: high
+  Drupal-8:SimpleTestDisabled:
+    severity: normal
+  Drupal-8:StatisticsDisabled:
+    severity: normal
+  Drupal-8:UpdateDisabled:
+    severity: high
+
+  # permissions
+  Drupal:AnonSession:
+    severity: normal
+  Drupal-8:User1LockDown:
+    severity: high
+    parameters:
+      blacklist : '(admin|root|drupal|god|govcms|paul|sean|ruwan)'
+      email : 'no_reply@govcms.gov.au'
+      status : 1
+  Drupal-8:UserRegistrationAdminOnly:
+      severity: normal
+
+  # Performance
+  Drupal-8:CssAggregation:
+    severity: normal
+  Drupal-8:JsAggregation:
+    severity: normal
+  Drupal-8:ErrorLevel:
+    severity: normal
+  Drupal-8:CronLast:
+    severity: normal
+
+  # Housekeeping
+  Drupal:updates:
+    severity: normal
+  Database:Size:
+    severity: normal
+    parameters:
+      max_size : 1000
+      warning_size : 250
+  fs:largeFiles:
+    severity: normal
+    parameters:
+      max_size : 20
+  Drupal:largeFiles:
+    severity: normal
+    parameters:
+      max_size : 20000000 #20MB
+  fs:SensitivePublicFiles:
+    severity: normal
+    parameters:
+      extensions: 'sql,php,sh,py,bz2,gz,tar,tgz,zip'
+
+  # Theme specific checks.
+  Drupal:LintTheme:
+    severity: low
+    parameters:
+      path: '/app/web/themes/custom/'
+  fs:DrupalThemeDirectory:
+    severity: normal
+    parameters:
+      path: '/app/web/themes/custom/'
+      max_size : 50
+  Drupal:ThemeSecurity:
+    severity: normal
+    parameters:
+      directory: '/app/web/themes/custom/'
+      filetypes:
+        - php
+        - inc
+        - theme
+      patterns:
+        - "_POST"
+        - "exec\\("
+        - "db_query"
+        - "db_merge"
+        - "db_update"
+        - "db_write_record"
+        - "\\->query"
+        - "drupal_http_request"
+        - "curl_init"
+        - "passthru"
+        - "proc_open"
+        - "system\\("
+        - "sleep\\("
+        - "mysql_"
+        - "mysqli"
+        - "sqlite"
+        - "db_query"
+        - "db_result"
+        - "pager_query"
+        - "db_set_active"
+        - "db_insert"
+        - "db_update"
+        - "db_delete"
+        - "countQuery"

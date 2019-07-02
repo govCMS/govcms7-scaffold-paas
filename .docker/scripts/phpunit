@@ -1,0 +1,7 @@
+#!/usr/bin/env bash
+# PHPUnit testing for PaaS projects.
+
+TESTS_DIR=${TESTS_DIR:-/tests}
+
+# Run phpunit.
+${TESTS_DIR}/vendor/bin/phpunit --bootstrap ${TESTS_DIR}/phpunit/bootstrap_phpunit.inc --configuration  ${TESTS_DIR}/phpunit/phpunit.xml "$@"

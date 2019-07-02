@@ -1,0 +1,8 @@
+#!/usr/bin/env bash
+# Behat feature testing for PaaS projects.
+
+TESTS_DIR=${TESTS_DIR:-/tests}
+BEHAT_PROFILE=${BEHAT_PROFILE:-}
+
+# Run behat tests.
+${TESTS_DIR}/vendor/bin/behat --config ${TESTS_DIR}/behat/behat.yml --strict --colors $BEHAT_PROFILE "$@"

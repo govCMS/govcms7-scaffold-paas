@@ -4,7 +4,21 @@ FROM ${CLI_IMAGE} as cli
 FROM govcmsdev/test
 
 COPY --from=cli /app /app
-COPY --from=govcmsdev/test /app/tests /app/tests
+COPY --from=govcmsdev/test /app/tests /tests
+
+COPY .docker/scripts/lint /usr/bin
+COPY .docker/scripts/behat /usr/bin
+COPY .docker/scripts/phpunit /usr/bin
+COPY .docker/scripts/drutiny /usr/bin
+
+RUN chmod +x /usr/bin/lint
+RUN chmod +x /usr/bin/behat
+RUN chmod +x /usr/bin/phpunit
+RUN chmod +x /usr/bin/drutiny
+
+# Set up drutiny
+COPY .docker/images/test/drutiny /tests/drutiny
+RUN composer install -d /tests/drutiny && composer clearcache
 
 # Define where the Drupal Root is located
 ENV WEBROOT=docroot
