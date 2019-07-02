@@ -10,6 +10,9 @@ x-volumes:
   &default-volumes
     volumes:
       - .:/app:delegated
+      - ./tests/behat:/tests/behat:delegated
+      - ./tests/phpunit:/tests/phpunit:delegated
+      - ./tests/phpcs:/tests/phpcs:delegated
 
 x-environment:
   &default-environment

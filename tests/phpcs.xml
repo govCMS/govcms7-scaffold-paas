@@ -1,0 +1,77 @@
+<?xml version="1.0"?>
+<ruleset name="govCMS">
+  <description>PHPCS Standard for govCMS, based on Drupal standards.
+  </description>
+
+  <rule ref="Drupal"/>
+  <rule ref="DrupalPractice"/>
+
+  <arg name="extensions" value="inc,info,install,module,php,profile,test,theme"/>
+  <arg name="colors"/>
+  <arg value="sp"/>
+
+  <file>/app/docroot/sites/all/modules/custom</file>
+  <file>/app/docroot/sites/all/themes</file>
+
+  <!-- Exclude all features-generated files. -->
+  <exclude-pattern>*\.bean\.*</exclude-pattern>
+  <exclude-pattern>*\.context\.*</exclude-pattern>
+  <exclude-pattern>*\.current_search\.*</exclude-pattern>
+  <exclude-pattern>*\.custom_formatters\.*</exclude-pattern>
+  <exclude-pattern>*\.ds\.*</exclude-pattern>
+  <exclude-pattern>*\.facetapi_defaults\.*</exclude-pattern>
+  <exclude-pattern>*\.feeds_*\.*</exclude-pattern>
+  <exclude-pattern>*\.features\.*</exclude-pattern>
+  <exclude-pattern>*\.field_group\.*</exclude-pattern>
+  <exclude-pattern>*\.file_default_displays\.*</exclude-pattern>
+  <exclude-pattern>*\.file_type\.*</exclude-pattern>
+  <exclude-pattern>*\.heartbeat\.*</exclude-pattern>
+  <exclude-pattern>*\.layouts\.*</exclude-pattern>
+  <exclude-pattern>*\.linkit_profiles\.*</exclude-pattern>
+  <exclude-pattern>*\.pages_default\.*</exclude-pattern>
+  <exclude-pattern>*\.panels_default\.*</exclude-pattern>
+  <exclude-pattern>*\.rules_defaults\.*</exclude-pattern>
+  <exclude-pattern>*\.strongarm\.*</exclude-pattern>
+  <exclude-pattern>*\.views_default\.*</exclude-pattern>
+  <exclude-pattern>*\.quicktabs\.*</exclude-pattern>
+
+  <!-- Exclude all text files. -->
+  <exclude-pattern>*\.txt</exclude-pattern>
+  <exclude-pattern>*\.md</exclude-pattern>
+
+  <!-- Exclude compiled CSS files in govCMS themes. -->
+  <exclude-pattern>/app/profiles/govcms/themes/govcms/*/css/*\.css</exclude-pattern>
+  <!-- Exclude code in SASS Extensions. -->
+  <exclude-pattern>sass-extensions/*</exclude-pattern>
+
+  <!-- Exclude GOVCMS_STARTERKIT -->
+  <exclude-pattern>GOVCMS_STARTERKIT/*</exclude-pattern>
+
+  <!--Allow uncommented functions in tests as they usually provide enough
+  information from their names.-->
+  <rule ref="Drupal.Commenting.DocComment.MissingShort">
+    <exclude-pattern>tests/behat/bootstrap/*\.php</exclude-pattern>
+    <exclude-pattern>tests/behat/bootstrap/*.inc</exclude-pattern>
+    <exclude-pattern>tests/phpunit/tests/*.Test\.php</exclude-pattern>
+  </rule>
+  <rule ref="Drupal.Commenting.FunctionComment.Missing">
+    <exclude-pattern>tests/behat/bootstrap/*\.php</exclude-pattern>
+    <exclude-pattern>tests/behat/bootstrap/*.inc</exclude-pattern>
+    <exclude-pattern>tests/phpunit/tests/*.Test\.php</exclude-pattern>
+  </rule>
+  <rule ref="Drupal.Commenting.FunctionComment.MissingReturnComment">
+    <exclude-pattern>tests/behat/bootstrap/*\.php</exclude-pattern>
+    <exclude-pattern>tests/behat/bootstrap/*.inc</exclude-pattern>
+    <exclude-pattern>tests/phpunit/tests/*.Test\.php</exclude-pattern>
+  </rule>
+  <rule ref="DrupalPractice.General.ClassName.ClassPrefix" >
+    <exclude-pattern>tests/behat/bootstrap/*\.php</exclude-pattern>
+    <exclude-pattern>tests/behat/bootstrap/*.inc</exclude-pattern>
+    <exclude-pattern>tests/phpunit/tests/*.Test\.php</exclude-pattern>
+  </rule>
+
+  <!-- Template files may have inline PHP on the same line -->
+  <rule ref="Drupal.WhiteSpace.ScopeClosingBrace.Line">
+    <exclude-pattern>*.tpl.php</exclude-pattern>
+  </rule>
+</ruleset>

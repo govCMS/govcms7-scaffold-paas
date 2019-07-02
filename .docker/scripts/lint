@@ -1,0 +1,17 @@
+#!/usr/bin/env bash
+# Code linting for PaaS project.
+
+TESTS_DIR=${TESTS_DIR:-/tests}
+DOCROOT_DIR=${DOCROOT_DIR:-/app/docroot}
+THEMES_DIR=${PROFILE_DIR:-${DOCROOT_DIR}/sites/all/themes/custom}
+MODULES_DIR=${PROFILE_DIR:-${DOCROOT_DIR}/sites/all/modules/custom}
+
+# Lint code.
+${TESTS_DIR}/vendor/bin/parallel-lint --exclude /app/tests/vendor -e php,inc,module,theme,install,profile,test ${THEMES_DIR} ${MODULES_DIR}
+
+# Check code standards.
+${TESTS_DIR}/vendor/bin/phpcs --standard=${TESTS_DIR}/phpcs.xml ${THEMES_DIR} ${MODULES_DIR}
+
+# Check code mess.
+${TESTS_DIR}/vendor/bin/phpmd ${THEMES_DIR} text codesize,unusedcode,cleancode
+${TESTS_DIR}/vendor/bin/phpmd ${MODULES_DIR} text codesize,unusedcode,cleancode

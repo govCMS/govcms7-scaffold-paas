@@ -1,0 +1,16 @@
+#!/usr/bin/env bash
+# Drutiny wrapper.
+
+TESTS_DIR=${TESTS_DIR:-/tests}
+APP_DIR=${APP_DIR:-/app}
+DRUTINY_DIR=${DRUTINY_DIR:-$TESTS_DIR/drutiny}
+
+CUR_DIR=$(pwd)
+
+cd $DRUTINY_DIR
+./vendor/bin/drutiny "$@"
+result=$?
+
+cd $CUR_DIR
+
+exit $result
