@@ -24,11 +24,11 @@ commands:
     cmd: docker-compose up -d --build "$@"
 
   cli:
-    usage: Start a shell inside container.
+    usage: Start a shell inside cli container.
     cmd: docker-compose exec cli bash
 
   run:
-    usage: Run command inside container.
+    usage: Run command inside cli container.
     cmd: docker-compose exec -T cli bash -c "$@"
 
   govcms-deploy:
@@ -36,7 +36,7 @@ commands:
     cmd: docker-compose exec -T cli govcms-deploy
 
   drush:
-    usage: Run drush commands in container.
+    usage: Run drush commands in cli container.
     cmd: docker-compose exec -T cli drush "$@"
 
   logs:
@@ -67,14 +67,14 @@ commands:
     usage: Pipe in a sql file.  `ahoy mysql-import local.sql`
     cmd: |
       if [ -e "$@" ] ; then
-        docker-compose exec test bash -c 'drush sql-drop' &&
-        docker-compose exec -T test bash -c 'drush sql-cli' < "$@"
+        docker-compose exec cli bash -c 'drush sql-drop' &&
+        docker-compose exec -T cli bash -c 'drush sql-cli' < "$@"
       else echo "Provided sql file" "$@" "does not exist"
       fi
 
   mysql-dump:
     usage: Dump data out into a file. `ahoy mysql-dump local.sql`
-    cmd: docker-compose exec test bash -c 'drush sql-dump --ordered-dump' > "$@"
+    cmd: docker-compose exec cli bash -c 'drush sql-dump --ordered-dump' > "$@"
 
   lint:
     usage: Lint code

@@ -17,7 +17,7 @@ x-volumes:
 x-environment:
   &default-environment
     STAGE_FILE_PROXY_URL: ${STAGE_FILE_PROXY_URL:-}
-    LAGOON_ENVIRONMENT_TYPE: ${LAGOON_ENVIRONMENT_TYPE}
+    LAGOON_ENVIRONMENT_TYPE: ${LAGOON_ENVIRONMENT_TYPE:-}
     LAGOON_PROJECT: *lagoon-project
     LAGOON_ROUTE: &default-url ${LOCALDEV_URL:-http://govcms7-paas.docker.amazee.io}
     X_FRAME_OPTIONS: ${X_FRAME_OPTIONS:-SameOrigin}
@@ -96,25 +96,27 @@ services:
     environment:
       << : *default-environment
 
-  redis:
-    image: govcmslagoon/redis
-    labels:
-      lagoon.type: redis
-    environment:
-      << : *default-environment
+  # Uncomment to enable redis.
+  # redis:
+  #   image: govcmslagoon/redis
+  #   labels:
+  #     lagoon.type: redis
+  #   environment:
+  #     << : *default-environment
 
-  solr:
-    build:
-      context: .
-      dockerfile: .docker/Dockerfile.solr
-      args:
-        CLI_IMAGE: *lagoon-project
-    labels:
-      lagoon.type: solr
-    ports:
-      - "8983" # Find port on host with `docker-compose port solr 8983`
-    environment:
-      << : *default-environment
+  # Uncomment to enable solr.
+  # solr:
+  #   build:
+  #     context: .
+  #     dockerfile: .docker/Dockerfile.solr
+  #     args:
+  #       CLI_IMAGE: *lagoon-project
+  #   labels:
+  #     lagoon.type: solr
+  #   ports:
+  #     - "8983" # Find port on host with `docker-compose port solr 8983`
+  #   environment:
+  #     << : *default-environment
 
   chrome:
     image: selenium/standalone-chrome
