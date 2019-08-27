@@ -21,8 +21,8 @@ x-environment:
     LAGOON_PROJECT: *lagoon-project
     LAGOON_ROUTE: &default-url ${LOCALDEV_URL:-http://govcms7-paas.docker.amazee.io}
     X_FRAME_OPTIONS: ${X_FRAME_OPTIONS:-SameOrigin}
-    DRUPAL_SHIELD_USER: ${DRUPAL_SHIELD_USER:-govcms}
-    DRAUPL_SHIELD_PASS: ${DRAUPL_SHIELD_PASS:-smcvog}
+    DRUPAL_SHIELD_USER: ${DRUPAL_SHIELD_USER}
+    DRAUPL_SHIELD_PASS: ${DRAUPL_SHIELD_PASS}
 
 services:
 
