@@ -1,7 +1,8 @@
 ARG CLI_IMAGE
 FROM ${CLI_IMAGE} as cli
 
-FROM govcmslagoon/solr
+ARG GOVCMS_SOLR_VERSION
+FROM amazeeio/solr:${GOVCMS_SOLR_VERSION:-6.6}
 
 # Copy the Solr configuration files.
 COPY .docker/config/solr /solr-conf/conf
