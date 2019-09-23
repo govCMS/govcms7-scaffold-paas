@@ -1,4 +1,4 @@
-# GovCMS Project Scaffolding
+# GovCMS PaaS Project Scaffolding
 
 ## About this project
 
@@ -49,7 +49,7 @@ If you want to run Drupal within it:
 
 4. Copy a fresh or Dockerized Drupal project into the `/docroot` folder. If it's a fresh install:
 
-    a. Visit the URL specified in `docker-compose.yml` under `&lagoon-local-dev-url`
+    a. Visit the URL specified in `docker-compose.yml` under `LAGOON_ROUTE`
     
     b. You should see the Drupal 'Install Drupal' screen. Under 'Advanced', change the host from `localhost` to `mariadb`, and set the database name, username, and password as `drupal`.
 
