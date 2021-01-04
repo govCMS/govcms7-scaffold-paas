@@ -1,9 +1,9 @@
-image: quay.io/govcms/govcms-ci
+image: gitlab-registry-production.govcms.amazee.io/govcms/govcms-ci${GOVCMS_CI_IMAGE_VERSION}
 services:
-- docker:dind
+  - gitlab-registry-production.govcms.amazee.io/govcms/govcms-ci/dind:latest
 stages:
-- build
-- deploy
+  - build
+  - deploy
 build:
   stage: build
   script:
@@ -13,7 +13,7 @@ build:
   - ahoy up
   - docker-compose exec -T test dockerize -wait tcp://mariadb:3306 -timeout 1m
   - |
-    if grep --quiet '^MARIADB_DATA_IMAGE' .env; then
+    if grep -q '^MARIADB_DATA_IMAGE' .env; then
       ahoy govcms-deploy
     else
       ahoy -v install
