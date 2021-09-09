@@ -1,8 +1,12 @@
-# GovCMS Project Scaffolding
+# GovCMS7 PaaS Project Scaffolding
 
-## Known Issues
+## Notice
 
-* This repository is still a Work-in-Progress, and may be subject to slight alterations
+Most new GovCMS projects are built on [Drupal 8 SaaS](https://github.com/govCMS/govcms8-scaffold)
+or [PaaS](https://github.com/govCMS/govcms8-scaffold-paas). The READMEs for those projects are
+now directing readers to the [GovCMS Developer Wiki](https://github.com/govCMS/govcms/wiki). This legacy README
+is kept here.
+
 
 ## Requirements and Preliminary Setup
 
@@ -19,6 +23,7 @@
         docker-compose up -d; cd ..
 
 * [Ahoy (optional)](http://ahoy-cli.readthedocs.io/en/latest/#installation) - The commands are listed in `.ahoy.yml` all include their docker-compose versions for use on Windows, or on systems without Ahoy.
+
 
 ## Project Setup
 
