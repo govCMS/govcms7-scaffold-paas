@@ -1,4 +1,4 @@
-# GovCMS7 PaaS Project Scaffolding
+# GovCMS7 PaaS Project Scaffolding - ARCHIVED
 
 ## Notice
 
