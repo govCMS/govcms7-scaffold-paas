@@ -11,6 +11,6 @@ environments:
   master:
     cronjobs:
       - name: drush cron
-        schedule: "*/15 * * * *"
-        command: 'drush cron'
+        schedule: "0 * * * *"
+        command: 'drush cron --root=/app'
         service: cli
